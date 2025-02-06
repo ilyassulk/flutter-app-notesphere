@@ -5,6 +5,7 @@ import '../bloc/NoteBloc.dart';
 import '../models/Folder.dart';
 import '../widgets/NoteCard.dart';
 import '../widgets/SpeechRecordingWidget.dart';
+import 'NoteSearchScreen.dart';
 import 'SpeechRequestsScreen.dart';
 
 
@@ -174,6 +175,16 @@ class NoteHomeScreen extends StatelessWidget {
             icon: Icon(Icons.create_new_folder),
             onPressed: () => _showAddFolderDialog(context),
           ),
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: (){
+              final state = BlocProvider.of<NoteBloc>(context).state;
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => NoteSearchScreen(notes: state.notes)),
+              );
+            },
+          )
         ],
       ),
       body: Stack(
